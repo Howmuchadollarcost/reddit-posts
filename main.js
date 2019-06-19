@@ -32,7 +32,6 @@ async function getPics(API){
 
 const showPics= (data) => {
     data[0].map(item =>{
-        console.log(item);
         let img = document.createElement('img');
         img.src = item.data.url;
         let title = document.createElement('h4');
