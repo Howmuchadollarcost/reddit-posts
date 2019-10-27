@@ -2,8 +2,10 @@ const results = document.getElementById("results");
 const loading = document.getElementById("loading");
 const bpt = document.getElementById("bpt");
 const mi = document.getElementById("mi");
+const toTheTop = document.getElementById("top");
 
 loading.style.display = "none";
+toTheTop.style.display = "none";
 
 bpt.addEventListener("click", () => {
   const API = `https://www.reddit.com/r/blackpeopletwitter/.json`;
@@ -23,6 +25,7 @@ async function getPics(API) {
   const data = await res.json();
   const dataArr = [];
   showPics(data.data.children);
+  toTheTop.style.display = "";
 
   let lazyImages = [...document.querySelectorAll(".post")];
   let inAdvance = 300;
@@ -67,7 +70,10 @@ const showPics = data => {
 
     const showImage = () => {
       img.style.filter = "blur(0px)";
-      console.log("hello");
     };
   });
 };
+
+toTheTop.addEventListener("click",()=>{
+  console.log(document.body.scroll);
+})
