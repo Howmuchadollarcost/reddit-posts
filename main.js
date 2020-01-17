@@ -47,30 +47,33 @@ async function getPics(API) {
 }
 
 const showPics = data => {
+  console.log(data)
   data.map(item => {
-    const urls = item.data.preview.images[0].source.url;
-    const newUrl = urls.replace(/amp;/gi, "");
-    let img = document.createElement("img");
-    img.src = newUrl;
-    img.className = "blurry";
-    let title = document.createElement("h4");
-    title.innerHTML = item.data.title;
-    let div = document.createElement("div");
-    div.className = "post";
-
-    div.appendChild(title);
-    div.appendChild(img);
-
-    results.appendChild(div);
-    loading.style.display = "none";
-
-    let timeout = this.setTimeout(function() {
-      showImage();
-    }, 1500);
-
-    const showImage = () => {
-      img.style.filter = "blur(0px)";
-    };
+    if(item.data.preview){
+      const urls = item.data.preview.images[0].source.url;
+      const newUrl = urls.replace(/amp;/gi, "");
+      let img = document.createElement("img");
+      img.src = newUrl;
+      img.className = "blurry";
+      let title = document.createElement("h4");
+      title.innerHTML = item.data.title;
+      let div = document.createElement("div");
+      div.className = "post";
+  
+      div.appendChild(title);
+      div.appendChild(img);
+  
+      results.appendChild(div);
+      loading.style.display = "none";
+  
+      let timeout = this.setTimeout(function() {
+        showImage();
+      }, 1500);
+  
+      const showImage = () => {
+        img.style.filter = "blur(0px)";
+      };
+    }
   });
 };
 
