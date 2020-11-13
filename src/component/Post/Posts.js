@@ -15,9 +15,9 @@ export default function Posts({ posts }) {
         <PostsContainer>
             {
                 posts.length > 0 && posts.map(post => {
-                    if (post.data.preview) {
+                    if (post.data.url_overridden_by_dest) {
                         let title = post.data.title;
-                        let imageUrl = post.data.preview.images[0].source.url;
+                        let imageUrl =  post.data.url_overridden_by_dest;
                         let imgSrc = imageUrl.replace(/amp;/gi, '');
                         let commentLink = post.data.permalink;
                         return <Post key={post.data.created} title={title} imgSrc={imgSrc} commentLink={commentLink} />
